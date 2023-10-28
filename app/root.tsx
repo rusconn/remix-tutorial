@@ -13,7 +13,7 @@ import {
   useLoaderData,
 } from "@remix-run/react";
 
-import { getContacts } from "./data";
+import { createEmptyContact, getContacts } from "./data";
 import appStylesHref from "./app.css";
 
 export const links: LinksFunction = () => [
@@ -23,6 +23,11 @@ export const links: LinksFunction = () => [
 export const loader = async () => {
   const contacts = await getContacts();
   return json({ contacts });
+};
+
+export const action = async () => {
+  const contact = await createEmptyContact();
+  return json({ contact });
 };
 
 export default function App() {
